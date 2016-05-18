@@ -1,6 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, OnChanges, SimpleChange} from '@angular/core';
 import {RedFontDirective} from './red-font.directive';
 import {AddTwoPipe} from "./shared/add-two/add-two.pipe";
+import {PizzaService} from './shared/index';
+import {Pizza} from "./shared/index";
+
 
 @Component({
     selector: 'pizza-app',
@@ -22,14 +25,29 @@ import {AddTwoPipe} from "./shared/add-two/add-two.pipe";
                      </div>
                      <span>{{10.99 | currency:'EUR': true:'5.0-2'}}</span>
                      <div>{{1 | addTwo: 5}}</div>
+                     <span>Anzahl an Pizzen: {{pizzas.length}}</span>           
                </form>`
 })
 
-export class PizzaAppComponent {
+export class PizzaAppComponent implements OnInit, OnChanges{
     public search:string;
     public isVisible:boolean = false;
+    public pizzas = [];
 
-    constructor() {
+    constructor(private pizzaService:PizzaService) {
         this.search = 'Test';
+        this.loadData();
+    }
+
+    loadData() {
+        this.pizzaService.getPizza().subscribe((pizzas:Pizza[]) => this.pizzas = pizzas);
+    }
+
+    ngOnInit(){
+        console.log("ngOninit invoked");
+    }
+    ngOnChanges(changes: {[key: string]: SimpleChange}){
+        console.log("ngOnchanges invokde");
+       console.log(JSON.stringify(changes));
     }
 }
