@@ -3,9 +3,9 @@
  */
 import {Http, Response} from '@angular/http';
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {Pizza} from "./pizza.model";
+import {Pizza} from './pizza.model';
 
 @Injectable()
 export class PizzaService {
