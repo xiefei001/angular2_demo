@@ -3,11 +3,12 @@ import {RedFontDirective} from './red-font.directive';
 import {AddTwoPipe} from "./shared/add-two/add-two.pipe";
 import {PizzaService} from './shared/index';
 import {Pizza} from "./shared/index";
+import {DATEPICKER_DIRECTIVES} from "./components/datepicker";
 
 
 @Component({
     selector: 'pizza-app',
-    directives: [RedFontDirective],
+    directives: [RedFontDirective, DATEPICKER_DIRECTIVES],
     pipes: [AddTwoPipe],
     template: `<h1>
                   Willkommen zum Angular2 Tutorial von AngularJS.DE
@@ -26,14 +27,22 @@ import {Pizza} from "./shared/index";
                      <span>{{10.99 | currency:'EUR': true:'5.0-2'}}</span>
                      <div>{{1 | addTwo: 5}}</div>
                      <span>Anzahl an Pizzen: {{pizzas.length}}</span>           
-               </form>`
+               </form>
+               
+               <input type="text" class="form-control"
+               datepickerPopup  [(ngModel)]="dt" [(isOpen)]="opened">               
+               
+               `
 })
 
-export class PizzaAppComponent implements OnInit, OnChanges{
+export class PizzaAppComponent implements OnInit, OnChanges {
     public search:string;
     public isVisible:boolean = false;
     public pizzas = [];
-
+    public dt = new Date();
+    public minDate = new Date();
+    public opened:boolean = true;
+    public format = "YYYY-MM-DD";
     constructor(private pizzaService:PizzaService) {
         this.search = 'Test';
         this.loadData();
@@ -43,11 +52,12 @@ export class PizzaAppComponent implements OnInit, OnChanges{
         this.pizzaService.getPizza().subscribe((pizzas:Pizza[]) => this.pizzas = pizzas);
     }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log("ngOninit invoked");
     }
-    ngOnChanges(changes: {[key: string]: SimpleChange}){
+
+    ngOnChanges(changes:{[key:string]:SimpleChange}) {
         console.log("ngOnchanges invokde");
-       console.log(JSON.stringify(changes));
+        console.log(JSON.stringify(changes));
     }
 }
