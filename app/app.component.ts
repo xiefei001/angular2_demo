@@ -28,9 +28,13 @@ import {DATEPICKER_DIRECTIVES} from "./components/datepicker";
                      <div>{{1 | addTwo: 5}}</div>
                      <span>Anzahl an Pizzen: {{pizzas.length}}</span>           
                </form>
-               
+               <i class="fa fa-calendar fa-4x" aria-hidden="true"></i>
                <input type="text" class="form-control"
-               datepickerPopup  [(ngModel)]="dt" [(isOpen)]="opened">               
+               datepickerPopup  [(ngModel)]="dt" [(isOpen)]="opened"> 
+                              <div style="display:inline-block; min-height:290px;">
+    <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
+  </div>
+
                
                `
 })
@@ -41,7 +45,7 @@ export class PizzaAppComponent implements OnInit, OnChanges {
     public pizzas = [];
     public dt = new Date();
     public minDate = new Date();
-    public opened:boolean = true;
+    public opened:boolean = false;
     public format = "YYYY-MM-DD";
     constructor(private pizzaService:PizzaService) {
         this.search = 'Test';
