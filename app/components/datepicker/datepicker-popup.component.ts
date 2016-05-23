@@ -3,18 +3,35 @@
  */
 import {Component} from '@angular/core';
 import {DatePickerComponent} from "./datepicker.component";
-import {DATEPICKER_DIRECTIVES} from "../datepicker";
 
 @Component({
     selector: 'datepicker-popup',
-    directives: [DatePickerComponent, DATEPICKER_DIRECTIVES],
-    template:`
-    <input type="text">
+    directives: [DatePickerComponent],
+    styles: [
+        `
+       .input-group {
+           position: relative;
+           display: table;
+           border-collapse: separate;
+       }
+       .input-cell {
+           display: table-cell
+       }
+        `
+    ],
+    template: `
+    <p class="input-group">
+       <input class="input-cell">
+       <span class="input-cell" aria-hidden="true">
+          <button type="button">
+             <i class="fa fa-calendar" aria-hidden="true"></i>
+          </button>
+       </span>
+    </p>
     <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true" *ngIf="opened"></datepicker>
-    <span class="fa fa-calendar fa-4x" aria-hidden="true"></span>
     `
 })
-export class DatePickerPopupComponent{
+export class DatePickerPopupComponent {
     public dt = new Date();
     public minDate = new Date();
     public opened = true;
