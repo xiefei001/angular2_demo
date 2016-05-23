@@ -9,9 +9,9 @@
  4. date-disabled attribute support
  5. template-url attribute support
  */
-import {DatePickerPopupDirective} from './datepicker/datepicker-popup-old.component.ts';
+import {DatePickerPopupDirective} from './datepicker/datepicker-popup-old.component';
 import {DatePickerComponent} from './datepicker/datepicker.component';
 
-export {DatePickerPopupDirective} from './datepicker/datepicker-popup-old.component.ts';
+export {DatePickerPopupDirective} from './datepicker/datepicker-popup-old.component';
 export {DatePickerComponent} from './datepicker/datepicker.component';
 export const DATEPICKER_DIRECTIVES:Array<any> = [DatePickerComponent, DatePickerPopupDirective];

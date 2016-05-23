@@ -4,11 +4,13 @@ import {AddTwoPipe} from "./shared/add-two/add-two.pipe";
 import {PizzaService} from './shared/index';
 import {Pizza} from "./shared/index";
 import {DATEPICKER_DIRECTIVES} from "./components/datepicker";
+import {DatePickerPopupComponent} from "./components/datepicker/datepicker-popup.component";
+
 
 
 @Component({
     selector: 'pizza-app',
-    directives: [RedFontDirective, DATEPICKER_DIRECTIVES],
+    directives: [RedFontDirective, DATEPICKER_DIRECTIVES, DatePickerPopupComponent],
     pipes: [AddTwoPipe],
     template: `<h1>
                   Willkommen zum Angular2 Tutorial von AngularJS.DE
@@ -31,6 +33,8 @@ import {DATEPICKER_DIRECTIVES} from "./components/datepicker";
                
                <i class="fa fa-calendar fa-4x" aria-hidden="true" (click)="clickCalendar()"></i>
                <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true" *ngIf="opened"></datepicker>
+               <br />
+               <datepicker-popup></datepicker-popup>
                <!-- 
                <input type="text" class="form-control" datepickerPopup  [(ngModel)]="dt" [(isOpen)]="opened"> 
                <div style="display:inline-block; min-height:290px;"> 
