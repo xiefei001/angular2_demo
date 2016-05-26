@@ -41,6 +41,8 @@ const SHORTCUT_PROPAGATION = false;
 @Component({
   selector: 'datepicker-inner',
   events: ['update'],
+  styles: [`
+  `],
   template: `
     <div *ngIf="datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
       <ng-content></ng-content>
